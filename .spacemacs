@@ -244,7 +244,7 @@ values."
    ;; If non nil show the color guide hint for transient state keys. (default t)
    dotspacemacs-show-transient-state-color-guide t
    ;; If non nil unicode symbols are displayed in the mode line. (default t)
-   dotspacemacs-mode-line-unicode-symbols t
+   dotspacemacs-mode-line-unicode-symbols nil
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
    ;; scrolling overrides the default behavior of Emacs which recenters point
    ;; when it reaches the top or bottom of the screen. (default t)
@@ -297,7 +297,20 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
 (defun dotspacemacs/user-config ()
   (setq-default evil-escape-key-sequence "jk")
+  (setq mac-command-modifier 'meta)
   (global-auto-revert-mode)
+  ;; initial window
+  (setq initial-frame-alist
+        '(
+          (width . 90) ; character
+          (height . 60) ; lines
+          ))
+  ;; default/sebsequent window
+  (setq default-frame-alist
+        '(
+          (width . 90) ; character
+          (height . 60) ; lines
+          ))
   (setq TeX-auto-save t)
   (setq TeX-parse-self t)
   (setq TeX-save-query nil)
@@ -308,6 +321,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq TeX-view-program-list 
         '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
   (server-start)
+  (setq powerline-default-separator 'bar)
+  (spaceline-compile)
   ;"Configuration function for user code.
 ;This function is called at the very end of Spacemacs initialization after
 ;layers configuration.
@@ -323,10 +338,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-) 
+ '(column-number-mode t)
+ '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:family "Source Code Pro" :foundry "nil" :slant normal :weight normal :height 130 :width normal)))))
