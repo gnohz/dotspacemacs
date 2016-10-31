@@ -39,7 +39,11 @@ values."
      latex
      ;; python
      helm
-     auto-completion
+     (auto-completion :variables
+                      auto-completion-enable-snippets-in-popup t
+     ;                auto-completion-private-snippets-directory nil
+     ;                 '("~/Dropbox/j-snippets")
+     )
      ;; better-defaults
      emacs-lisp
      git
@@ -139,7 +143,7 @@ values."
                                :size 13
                                :weight normal
                                :width normal
-                               :powerline-scale 1.15)
+                               :powerline-scale 1)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -300,17 +304,18 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq mac-command-modifier 'meta)
   (global-auto-revert-mode)
   ;; initial window
-  (setq initial-frame-alist
-        '(
-          (width . 90) ; character
-          (height . 60) ; lines
-          ))
+ ; (setq initial-frame-alist
+  ;      '(
+   ;       (width . 90) ; character
+    ;      (height . 60) ; lines
+     ;     ))
   ;; default/sebsequent window
-  (setq default-frame-alist
-        '(
-          (width . 90) ; character
-          (height . 60) ; lines
-          ))
+  ;(setq default-frame-alist
+   ;     '(
+    ;      (width . 90) ; character
+     ;     (height . 60) ; lines
+      ;    ))
+  ;; AucTex and Skim 
   (setq TeX-auto-save t)
   (setq TeX-parse-self t)
   (setq TeX-save-query nil)
@@ -321,9 +326,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq TeX-view-program-list 
         '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
   (server-start)
+  ;; mode line
   (setq powerline-default-separator 'bar)
   (spaceline-compile)
-  ;"Configuration function for user code.
+
+;"Configuration function for user code.
 ;This function is called at the very end of Spacemacs initialization after
 ;layers configuration.
 ;This is the place where most of your configurations should be done. Unless it is
@@ -338,6 +345,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(blink-cursor-mode t)
  '(column-number-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
