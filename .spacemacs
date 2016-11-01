@@ -329,7 +329,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; mode line
   (setq powerline-default-separator 'bar)
   (spaceline-compile)
-
+  ;; smartparens only works when the cursor is not next to text
+	;; https://www.reddit.com/r/emacs/comments/4xhxfw/how_to_tune_the_behavior_of_eletricpairmode/
+	(setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit)
 ;"Configuration function for user code.
 ;This function is called at the very end of Spacemacs initialization after
 ;layers configuration.
@@ -345,12 +347,15 @@ before packages are loaded. If you are unsure, you should try in setting them in
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(blink-cursor-blinks 0)
  '(blink-cursor-mode t)
  '(column-number-mode t)
+ '(electric-pair-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Source Code Pro" :foundry "nil" :slant normal :weight normal :height 130 :width normal)))))
+ '(default ((t (:family "Source Code Pro" :foundry "nil" :slant normal :weight normal :height 130 :width normal))))
+ '(sp-show-pair-match-face ((t (:background "#272822" :foreground "dark gray" :inverse-video t :weight normal)))))
