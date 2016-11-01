@@ -41,6 +41,7 @@ values."
      helm
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t
+                      auto-completion-complete-with-key-sequence "jk"
      ;                auto-completion-private-snippets-directory nil
      ;                 '("~/Dropbox/j-snippets")
      )
@@ -300,7 +301,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   )
 
 (defun dotspacemacs/user-config ()
-  (setq-default evil-escape-key-sequence "jk")
+ ; (setq-default evil-escape-key-sequence "jk")    
   (setq mac-command-modifier 'meta)
   (global-auto-revert-mode)
   ;; initial window
@@ -351,6 +352,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
  '(blink-cursor-mode t)
  '(column-number-mode t)
  '(electric-pair-mode t)
+ '(evil-escape-key-sequence "fd")
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
