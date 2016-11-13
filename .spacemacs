@@ -41,7 +41,7 @@ values."
      helm
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t
-                      auto-completion-complete-with-key-sequence "jk"
+     ;                 auto-completion-complete-with-key-sequence "fj"
      ;                auto-completion-private-snippets-directory nil
      ;                 '("~/Dropbox/j-snippets")
      )
@@ -65,7 +65,8 @@ values."
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(evil-unimpaired)
+   dotspacemacs-excluded-packages '(evil-unimpaired
+                                    smartparens)
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -338,7 +339,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 ;layers configuration.
 ;This is the place where most of your configurations should be done. Unless it is
 ;explicitly specified that a variable should be set before a package is loaded,
-;you should place your code here."
+;you should place your code here." 
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -352,7 +353,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
  '(blink-cursor-mode t)
  '(column-number-mode t)
  '(electric-pair-mode t)
- '(evil-escape-key-sequence "fd")
+ '(evil-escape-key-sequence "jk")
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
