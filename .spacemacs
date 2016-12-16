@@ -31,6 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     html
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -50,6 +51,7 @@ values."
      git
      markdown
      org
+     org2blog
      ;; (shell :variables
      ;;        shell-default-height 30     
      ;;        shell-default-position 'bottom)
@@ -65,8 +67,7 @@ values."
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(evil-unimpaired
-                                    smartparens)
+   dotspacemacs-excluded-packages '(evil-unimpaired)
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -302,7 +303,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   )
 
 (defun dotspacemacs/user-config ()
- ; (setq-default evil-escape-key-sequence "jk")    
   (setq mac-command-modifier 'meta)
   (global-auto-revert-mode)
   ;; initial window
@@ -334,6 +334,31 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; smartparens only works when the cursor is not next to text
 	;; https://www.reddit.com/r/emacs/comments/4xhxfw/how_to_tune_the_behavior_of_eletricpairmode/
 	(setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit)
+
+  (with-eval-after-load 'org
+      ;; some conflict issue
+      ;; http://spacemacs.org/layers/+emacs/org/README.html
+  ;;keybind to access the main Org file
+  ;;(global-set-key (kbd "C-c o") 
+  ;;              (lambda () (interactive) (find-file "~/Google Drive/Org/all.org")))
+
+  ;;Todo keywords
+  (setq org-todo-keywords
+    '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "SOMEDAY(s)" "|" "DONE(d)" "ABORT(a)")))    
+
+
+  ;;Agenda Setup
+  (setq org-agenda-files (quote ("~/Dropbox/Jie/Org")))
+
+  ;;Capture templates
+  (setq org-capture-templates
+      (quote (("t" "Todo" entry (file+datetree "~/Dropbox/Jie/Org/J-gtd.org")
+               "* TODO %?\n%U\n")
+              ("n" "Note" entry (file+datetree "~/Dropbox/Jie/Org/J-notes.org")
+               "* %? :math:\n%U\n")
+              ("l" "Work log" entry (file+datetree "~/Dropbox/Jie/Org/J-timelog.org")
+              "* %?\n%U\n" :clock-in t :clock-resume t))))
+  )
 ;"Configuration function for user code.
 ;This function is called at the very end of Spacemacs initialization after
 ;layers configuration.
